@@ -14,6 +14,7 @@ function authenticate(req, res, next) {
       if (err) return res.status(401).json(err);
 
       req.decoded = decoded;
+      req.userID = decoded.subject;
 
       next();
     });
@@ -35,3 +36,5 @@ function isRequired(req, res, next) {
     next();
   }
 }
+
+function validateUserId(req, res, next) {}

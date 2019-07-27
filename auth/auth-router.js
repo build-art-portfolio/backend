@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets");
 
-const { isRequired } = require("../middleware");
+const { isRequired, authenticate } = require("../middleware");
 const Auth = require("./auth-model");
 
 router.post("/register", isRequired, (req, res) => {
@@ -27,7 +27,9 @@ router.post("/login", isRequired, (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
+        console.log(user);
         const token = generateToken(user);
+        console.log(token);
         res.status(200).json({
           message: `Welcome ${user.username}!`,
           token
@@ -48,7 +50,8 @@ function generateToken(user) {
     firstName: user.first_name,
     lastName: user.last_name,
     email: user.email,
-    bio: user.bio
+    bio: user.bio,
+    profilePhoto: user.profilePhoto
   };
 
   const jwtOptions = {
