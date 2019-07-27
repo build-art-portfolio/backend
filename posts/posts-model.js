@@ -2,14 +2,23 @@ const db = require("../data/dbConfig");
 
 module.exports = {
   findPosts,
-  findPostById
+  findPostById,
+  updatePost,
+  deletePost
 };
 
 function findPosts() {
   return db("users")
     .join("posts", "users.id", "posts.userID")
     .orderBy("posts.createdAt")
-    .select("username", "profilePhoto", "url", "createdAt", "description");
+    .select(
+      "posts.id",
+      "username",
+      "profilePhoto",
+      "url",
+      "createdAt",
+      "description"
+    );
 }
 
 function findPostById(id) {
@@ -18,4 +27,16 @@ function findPostById(id) {
     .where("posts.id", id)
     .select("username", "profilePhoto", "url", "createdAt", "description")
     .first();
+}
+
+function updatePost(id, changes) {
+  return db("posts")
+    .where({ id })
+    .update(changes);
+}
+
+function deletePost(id) {
+  return db("posts")
+    .where({ id })
+    .delete();
 }
