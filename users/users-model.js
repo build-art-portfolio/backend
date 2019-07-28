@@ -36,14 +36,15 @@ function getUserPosts(id) {
 }
 
 function addPost(id, post) {
-  return db("posts")
-    .join("users", "posts.userID", "users.id")
-    .where("users.id", id)
-    .insert(post)
-    .then(ids => {
-      const [id] = ids;
-      return findPostById(id);
-    });
+  return (
+    db("posts")
+      // .join("users", "posts.userID", "users.id")
+      // .where("users.id", id)
+      .insert({ ...post, userID: id })
+      .then(([id]) => {
+        return findPostById(id);
+      })
+  );
 }
 
 function findPostById(id) {

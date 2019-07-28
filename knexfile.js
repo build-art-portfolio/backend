@@ -1,4 +1,4 @@
-// Update with your config settings.
+require("dotenv").config();
 
 module.exports = {
   development: {
@@ -20,28 +20,18 @@ module.exports = {
     }
   },
 
-  staging: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
-    }
-  },
-
   production: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
+    client: "pg",
+    connection: process.env.DATABASE_URL || {
+      database: "anything",
+      user: "user",
       password: "password"
-    },
-    pool: {
-      min: 2,
-      max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
     }
   }
 };
