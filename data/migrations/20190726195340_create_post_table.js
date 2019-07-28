@@ -9,7 +9,7 @@ exports.up = function(knex) {
       .integer("userID")
       .unsigned()
       .notNullable()
-      .references("id")
+      .foreign("id")
       .inTable("users")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
@@ -17,5 +17,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("posts");
+  return knex.schema.dropTableIfExists("posts").dropForeign("users", [userID]);
 };
