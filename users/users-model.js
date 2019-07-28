@@ -40,7 +40,7 @@ function addPost(id, post) {
     db("posts")
       // .join("users", "posts.userID", "users.id")
       // .where("users.id", id)
-      .insert({ ...post, userID: id })
+      .insert({ ...post, userID: id }, "id")
       .then(([id]) => {
         return findPostById(id);
       })
