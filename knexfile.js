@@ -1,5 +1,11 @@
 require("dotenv").config();
 
+const dbConnection = process.env.DATABASE_URL || {
+  database: "anything",
+  user: "user",
+  password: "password"
+};
+
 module.exports = {
   development: {
     client: "sqlite3",
@@ -22,11 +28,7 @@ module.exports = {
 
   production: {
     client: "pg",
-    connection: process.env.DATABASE_URL || {
-      database: "anything",
-      user: "user",
-      password: "password"
-    },
+    connection: dbConnection,
     migrations: {
       directory: "./data/migrations"
     },
