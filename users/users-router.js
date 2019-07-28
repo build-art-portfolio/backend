@@ -48,6 +48,20 @@ router.get("/:id/posts", (req, res) => {
     });
 });
 
+router.post("/:id/posts", authenticate, (req, res) => {
+  let post = req.body;
+  let id = req.params.id;
+  Users.addPost(id, post)
+    .then(saved => {
+      res.status(201).json(saved);
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ error: "There was a problem trying to create a post." });
+    });
+});
+
 function validUserUpdate(user) {
   const { username, first_name, last_name, bio } = user;
   return username && first_name && last_name && bio;
