@@ -17,4 +17,8 @@ server.use("/api/posts", postRouter);
 server.use("/api/users", userRouter);
 server.use("/api/images", imageRouter);
 
+server.get("/", (req, res) => {
+  res.send(`<h2>Art Portfolio!</h2>`);
+});
+
 module.exports = server;
