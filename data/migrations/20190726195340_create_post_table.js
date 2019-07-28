@@ -6,8 +6,11 @@ exports.up = function(knex) {
     posts.timestamp("createdAt").defaultTo(knex.fn.now());
     posts.string("description");
     posts
-      .string("userID")
-      .references("users.id")
+      .integer("userID")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("users")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
   });
