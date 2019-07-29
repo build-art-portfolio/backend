@@ -9,7 +9,7 @@ exports.up = function(knex) {
       .integer("userID")
       .unsigned()
       .notNullable()
-      .foreign("id")
+      .references("id")
       .inTable("users")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
