@@ -119,4 +119,5 @@
 
 Reset Heroku & Database
 
+npx heroku restart -a art-portfolio-be && npx heroku pg:reset DATABASE --confirm art-portfolio-be -a art-portfolio-be && npx heroku run knex migrate:rollback -a art-portfolio-be
 npx heroku restart -a art-portfolio-be && npx heroku pg:reset DATABASE --confirm art-portfolio-be -a art-portfolio-be && npx heroku run knex migrate:latest -a art-portfolio-be
