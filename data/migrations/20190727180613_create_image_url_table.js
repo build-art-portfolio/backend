@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("images", images => {
     images.increments();
 
-    images.string("url", 256).notNullable();
+    images.string("url", 999).notNullable();
   });
 };
 
