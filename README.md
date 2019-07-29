@@ -1,6 +1,7 @@
 # Art Portfolio Backend
 
 **Pitch**
+-A centralized hub for artists and creators to display their work in a professional fashion, for potential commissioners and employers.
 
 **MVP**
 
@@ -24,11 +25,11 @@
 
 - Backend: [https://art-portfolio-be.herokuapp.com/](https://art-portfolio-be.herokuapp.com/)
 
-# Endpoints
+## Endpoints
 
 - URL: [https://art-portfolio-be.herokuapp.com/](https://art-portfolio-be.herokuapp.com/)
 
-#Authentication
+## Authentication
 
 | Method | Endpoint             | Body/Headers Required                                 |
 | :----- | :------------------- | :---------------------------------------------------- |
@@ -53,7 +54,7 @@
 "password" : "your password"
 }
 
-#Images
+## Images
 
 | Method | Endpoint      | Body/Headers Required |
 | :----- | :------------ | :-------------------- |
@@ -62,7 +63,7 @@
 -GET /api/images
 -Get request to retrieve the list of images available to the users to "post"
 
-#Users
+## Users
 
 | Method | Endpoint               | Body/Headers Required                       |
 | :----- | :--------------------- | :------------------------------------------ |
@@ -108,17 +109,38 @@
 -Deletes a user by ID.
 -Requires header token.
 
-#Posts
+## Posts
 
 | Method | Endpoints        | Body/Headers Required |
 | :----- | :--------------- | :-------------------- |
-| GET    | `api/posts/`     |                       |
+| GET    | `/api/posts/`    |                       |
 | GET    | `/api/posts/:id` |                       |
 | PUT    | `/api/posts/:id` | description, token    |
 | DEL    | `/api/posts/:id` | token                 |
 
-Reset Heroku & Database
+-GET /api/posts/
+-Returns an array of all the posts.
 
+-GET /api/posts/:id
+-Returns a specific post by post ID.
+
+-PUT /api/posts/:id
+-Updates the description of a specific post by ID.
+-Requires header token.
+-Body Required:
+
+{
+"description" : "a new description."
+}
+
+-DEL /api/posts/:id
+-Deletes a post by the post ID.
+-Requires header token.
+
+## Reset Heroku & Database
+
+First, if changes to table:
 npx heroku restart -a art-portfolio-be && npx heroku pg:reset DATABASE --confirm art-portfolio-be -a art-portfolio-be && npx heroku run knex migrate:rollback -a art-portfolio-be
+
+Reset table:
 npx heroku restart -a art-portfolio-be && npx heroku pg:reset DATABASE --confirm art-portfolio-be -a art-portfolio-be && npx heroku run knex migrate:latest -a art-portfolio-be
-npx heroku restart -a art-portfolio-be && npx heroku pg:reset DATABASE --confirm art-portfolio-be -a art-portfolio-be && npx heroku run knex migrate:down -a art-portfolio-be
