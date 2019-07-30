@@ -63,8 +63,8 @@ router.post("/:id/posts", authenticate, (req, res) => {
 });
 
 function validUserUpdate(user) {
-  const { username, first_name, last_name, bio } = user;
-  return username && first_name && last_name && bio;
+  const { username, first_name, last_name, email, bio } = user;
+  return username && first_name && last_name && email && bio;
 }
 
 router.put("/:id/", authenticate, async (req, res) => {
