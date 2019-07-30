@@ -1,6 +1,7 @@
 # Art Portfolio Backend
 
 **Pitch**
+
 -A centralized hub for artists and creators to display their work in a professional fashion, for potential commissioners and employers.
 
 **MVP**
