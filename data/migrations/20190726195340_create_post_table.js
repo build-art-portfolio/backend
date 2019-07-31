@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("posts", posts => {
     posts.increments().unsigned();
 
-    posts.string("url").notNullable();
+    posts.string("url", 999).notNullable();
     posts.timestamp("createdAt").defaultTo(knex.fn.now());
     posts.string("description");
     posts
