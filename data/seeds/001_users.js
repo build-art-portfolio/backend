@@ -1,9 +1,11 @@
+const bcrypt = require("bcryptjs");
+
 exports.seed = function(knex) {
   return knex("users").then(function() {
     return knex("users").insert([
       {
         username: "chris-ian-jones",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Chris",
         last_name: "Jones",
         email: "cjones@lambdaschool.com",
@@ -11,7 +13,7 @@ exports.seed = function(knex) {
       },
       {
         username: "ben-solt",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Ben",
         last_name: "Solt",
         email: "bsolt@lambdaschool.com",
@@ -20,7 +22,7 @@ exports.seed = function(knex) {
       },
       {
         username: "eleasah-halsmer",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Eleasah",
         last_name: "Halsmer",
         email: "ehalsmer@lambdaschool.com",
@@ -29,7 +31,7 @@ exports.seed = function(knex) {
       },
       {
         username: "karl-beksa",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Karl",
         last_name: "Beksa",
         email: "kbeksa@lambdaschool.com",
@@ -38,7 +40,7 @@ exports.seed = function(knex) {
       },
       {
         username: "cassandra-springer",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Cassandra",
         last_name: "Springer",
         email: "cspringer@lambdaschool.com",
@@ -47,7 +49,7 @@ exports.seed = function(knex) {
       },
       {
         username: "bishop-lake",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Bishop",
         last_name: "Lake",
         email: "blake@lambdaschool.com",
@@ -56,7 +58,7 @@ exports.seed = function(knex) {
       },
       {
         username: "myles-azehko",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Myles",
         last_name: "Azehko",
         email: "mazehko@lambdaschool.com",
@@ -65,7 +67,7 @@ exports.seed = function(knex) {
       },
       {
         username: "monique-soto",
-        password: "password",
+        password: bcrypt.hashSync("password", 10),
         first_name: "Monique",
         last_name: "Soto",
         email: "msoto@lambdaschool.com",
