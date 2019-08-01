@@ -15,6 +15,7 @@ function findUsers() {
     "username",
     "first_name",
     "last_name",
+    "email",
     "bio",
     "profilePhoto"
   );
@@ -24,7 +25,14 @@ function findUserById(id) {
   return db("users")
     .where("users.id", id)
     .first()
-    .select("username", "first_name", "last_name", "bio", "profilePhoto");
+    .select(
+      "username",
+      "first_name",
+      "last_name",
+      "email",
+      "bio",
+      "profilePhoto"
+    );
 }
 
 function getUserPosts(id) {
