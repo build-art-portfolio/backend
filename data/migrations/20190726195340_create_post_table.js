@@ -6,6 +6,10 @@ exports.up = function(knex) {
     posts.timestamp("createdAt").defaultTo(knex.fn.now());
     posts.string("description");
     posts
+      .integer("likes")
+      .unsigned()
+      .defaultTo(0);
+    posts
       .integer("userID")
       .unsigned()
       .notNullable()

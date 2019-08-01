@@ -4,6 +4,7 @@ module.exports = {
   findPosts,
   findPostById,
   updatePost,
+  likePost,
   deletePost
 };
 
@@ -17,7 +18,8 @@ function findPosts() {
       "profilePhoto",
       "url",
       "createdAt",
-      "description"
+      "description",
+      "likes"
     );
 }
 
@@ -25,11 +27,24 @@ function findPostById(id) {
   return db("posts")
     .join("users", "users.id", "posts.userID")
     .where("posts.id", id)
-    .select("username", "profilePhoto", "url", "createdAt", "description")
+    .select(
+      "username",
+      "profilePhoto",
+      "url",
+      "createdAt",
+      "description",
+      "likes"
+    )
     .first();
 }
 
 function updatePost(id, changes) {
+  return db("posts")
+    .where({ id })
+    .update(changes);
+}
+
+function likePost(id, changes) {
   return db("posts")
     .where({ id })
     .update(changes);
