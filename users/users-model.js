@@ -41,7 +41,7 @@ function getUserPosts(id) {
     .where("users.id", id)
     .orderBy("posts.createdAt")
     .select(
-      "users.id",
+      "userID",
       "username",
       "profilePhoto",
       "url",
@@ -73,7 +73,7 @@ function findPostById(id) {
       "url",
       "createdAt",
       "description",
-      "users.id"
+      "userID"
     )
     .first();
 }
