@@ -40,7 +40,14 @@ function getUserPosts(id) {
     .join("posts", "users.id", "posts.userID")
     .where("users.id", id)
     .orderBy("posts.createdAt")
-    .select("username", "profilePhoto", "url", "createdAt", "description");
+    .select(
+      "username",
+      "profilePhoto",
+      "url",
+      "createdAt",
+      "description",
+      "posts.id"
+    );
 }
 
 function addPost(id, post) {
