@@ -12,6 +12,7 @@ function findPosts() {
     .join("posts", "users.id", "posts.userID")
     .orderBy("posts.createdAt")
     .select(
+      "users.id",
       "posts.id",
       "username",
       "profilePhoto",
@@ -25,7 +26,14 @@ function findPostById(id) {
   return db("posts")
     .join("users", "users.id", "posts.userID")
     .where("posts.id", id)
-    .select("username", "profilePhoto", "url", "createdAt", "description")
+    .select(
+      "users.id",
+      "username",
+      "profilePhoto",
+      "url",
+      "createdAt",
+      "description"
+    )
     .first();
 }
 
