@@ -5,9 +5,9 @@ const { authenticate } = require("../middleware");
 router.get("/posts/:id", (req, res) => {
   const id = req.params.id;
 
-  Likes.findLikes(id)
+  Likes.likedById(id)
     .then(likes => {
-      res.status(201).json({ likes: likes.length });
+      res.status(201).json({ likes: likes.length, postID: parseInt(id) });
     })
     .catch(error =>
       res

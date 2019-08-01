@@ -19,12 +19,11 @@ exports.up = function(knex) {
       .inTable("users")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
+
+    likes.unique(["postID", "userID"]);
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema
-    .dropTableIfExists("likes")
-    .dropForeign("posts", [postID])
-    .dropForeign("users", [userID]);
+  return knex.schema.dropTableIfExists("likes");
 };

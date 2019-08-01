@@ -21,13 +21,11 @@ function addLike(like) {
 }
 
 function likedById(id) {
-  return db("likes")
-    .where({ id })
-    .first();
+  return db("likes").where({ postID: id });
 }
 
 function removeLike(id) {
   return db("likes")
-    .where({ id })
+    .where({ postID: id })
     .del();
 }
