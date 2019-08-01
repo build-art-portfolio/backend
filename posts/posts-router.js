@@ -52,24 +52,6 @@ router.put("/:id/", authenticate, async (req, res) => {
   }
 });
 
-function addLike(post) {
-  const { likes } = post;
-  return likes + 1;
-}
-
-router.put("/:id/likes", authenticate, async (req, res) => {
-  try {
-    if (!addLike(req.body)) {
-      res.status(400).json({ error: "Please like the post." });
-    } else {
-      const post = await Posts.likePost(req.params.id, req.body);
-      res.status(200).json({ message: "You have liked the post." });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "There was a problem liking the post." });
-  }
-});
-
 router.delete("/:id", authenticate, (req, res) => {
   const id = req.params.id;
 
