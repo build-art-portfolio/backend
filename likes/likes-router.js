@@ -2,6 +2,20 @@ const router = require("express").Router();
 const Likes = require("./likes-model");
 const { authenticate } = require("../middleware");
 
+router.get("/posts/:id", (req, res) => {
+  const id = req.params.id;
+
+  Likes.findLikes(id)
+    .then(likes => {
+      res.status(201).json({ likes: likes.length });
+    })
+    .catch(error =>
+      res
+        .status(500)
+        .json({ error: "There was a problem getting the likes for this post." })
+    );
+});
+
 function validateLike(req, res, next) {
   const likes = req.body;
 
@@ -29,8 +43,8 @@ router.post("/posts/:id", authenticate, validateLike, async (req, res) => {
 router.delete("/posts/:id", authenticate, async (req, res) => {
   const id = req.params.id;
   try {
-    const unliking = await Likes.removeLike(id);
-    if (unliking > 0) {
+    const unlike = await Likes.removeLike(id);
+    if (unlike > 0) {
       res.status(200).json({ message: "The post has been unliked." });
     } else {
       res
