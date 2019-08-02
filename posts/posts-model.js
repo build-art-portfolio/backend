@@ -10,7 +10,7 @@ module.exports = {
 function findPosts() {
   return db("users")
     .join("posts", "users.id", "posts.userID")
-    .orderBy("posts.createdAt")
+    .orderBy("posts.id")
     .select(
       "userID",
       "posts.id",

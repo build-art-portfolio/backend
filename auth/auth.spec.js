@@ -92,6 +92,16 @@ describe("auth", () => {
           expect(res.status).toBe(201);
         });
     });
+
+    describe("get post by id", () => {
+      it("should return a 200", () => {
+        return request(server)
+          .get(`/api/posts/1`)
+          .then(res => {
+            expect(res.status).toBe(200);
+          });
+      });
+    });
   });
 
   describe("update user information", () => {

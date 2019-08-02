@@ -138,6 +138,40 @@
 -Deletes a post by the post ID.
 -Requires header token.
 
+## Likes
+
+| Method | Endpoints              | Body/Headers Required |
+| :----- | :--------------------- | :-------------------- |
+| GET    | `/api/likes/posts/:id` |                       |
+| POST   | `/api/likes/posts/:id` | userID, postID, token |
+| DEL    | `/api/likes/posts/:id` | token                 |
+
+-GET /api/likes/posts/:id
+-Returns the number of likes on a post by ID.
+
+-POST /api/likes/posts/:id
+-Adds a like to a post by post ID and user ID.
+
+{
+"userID" : 1,
+"postID" : 1
+}
+
+-DEL /api/likes/posts/:id
+-Deletes the like on a post.
+-Requires header token.
+
+## How to Setup
+
+- [ ] create a forked copy of this project.
+- [ ] git clone
+- [ ] npm i to install dependencies
+- [ ] npm run server (listening on port 5000)
+
+## How to run tests
+
+- [ ] npm run test
+
 ## Reset Heroku & Database
 
 First, if changes to table:
